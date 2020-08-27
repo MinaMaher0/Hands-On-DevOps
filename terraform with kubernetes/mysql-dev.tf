@@ -69,26 +69,11 @@ resource "kubernetes_deployment" "mysql-dev" {
             }
           }
 
-
-
-          # liveness_probe {
-          #   http_get {
-          #     path = "/nginx_status"
-          #     port = 80
-
-          #     http_header {
-          #       name  = "X-Custom-Header"
-          #       value = "Awesome"
-          #     }
-          #   }
-
-          #   initial_delay_seconds = 3
-          #   period_seconds        = 3
-          # }
           volume_mount {
             mount_path = "/var/lib/mysql"
             name = "mysql-dev-volume"
           }
+
         }
         volume {
             name = "mysql-dev-volume"
@@ -96,6 +81,7 @@ resource "kubernetes_deployment" "mysql-dev" {
               claim_name = kubernetes_persistent_volume_claim.mysql-dev-pvc.metadata[0].name
             }
         }
+        
       }
     }
   }

@@ -69,26 +69,11 @@ resource "kubernetes_deployment" "mysql-test" {
             }
           }
 
-
-
-          # liveness_probe {
-          #   http_get {
-          #     path = "/nginx_status"
-          #     port = 80
-
-          #     http_header {
-          #       name  = "X-Custom-Header"
-          #       value = "Awesome"
-          #     }
-          #   }
-
-          #   initial_delay_seconds = 3
-          #   period_seconds        = 3
-          # }
           volume_mount {
             mount_path = "/var/lib/mysql"
             name = "mysql-test-volume"
           }
+          
         }
         volume {
             name = "mysql-test-volume"
