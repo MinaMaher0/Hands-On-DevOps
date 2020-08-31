@@ -89,12 +89,7 @@ resource "kubernetes_deployment" "jenkins" {
             mount_path = "/var/run/docker.sock"
             name       = "docker-sock-volume"
           }
-
-          # volume_mount {
-          #   mount_path = "/var/run/secrets/kubernetes.io/serviceaccount"
-          #   name       = kubernetes_service_account.jenkins-account.default_secret_name
-          #   read_only  = true
-          # }
+          
         }
         volume {
             name = "jenins-volume"
@@ -117,13 +112,6 @@ resource "kubernetes_deployment" "jenkins" {
             }
         }
         
-        # volume {
-        #   name = kubernetes_service_account.jenkins-account.default_secret_name
-
-        #   secret {
-        #     secret_name = kubernetes_service_account.jenkins-account.default_secret_name
-        #   }
-        # }
       }
     }
   }
